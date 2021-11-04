@@ -33,20 +33,31 @@ public class UserInterface {
             case "f","færdig" -> {
                 odreHandler.visKø();
                 System.out.println("Indtast OdreID for at færdiggøre odre");
-                String OdreID = input.nextLine();
-                odreHandler.sælgPizza(OdreID);
+                String odreID = input.nextLine();
+                boolean ordre = odreHandler.sælgPizza(odreID);
+                if (ordre) {
+                    System.out.println(odreID + " blev solgt og slettet i køen");
+                } else {
+                    System.out.println("Prøv igen");
+                }
             }
             case "s","slet" -> {
                 odreHandler.visKø();
                 System.out.println("Indtast OdreID for at slette odre");
-                String OdreID = input.nextLine();
-                odreHandler.sletPizza(OdreID);
+                String odreID = input.nextLine();
+                boolean ordre = odreHandler.sletPizza(odreID);
+                if (ordre) {
+                    System.out.println(odreID + " blev slettet i køen");
+                } else {
+                    System.out.println("Prøv igen");
+                }
             }
-            case "k","kø","bestillinger","odre" -> {
+            case "k","kø","bestillinger","ordre" -> {
                 odreHandler.visKø();
             }
             case "x","afslut program" -> {
                 odreHandler.gemTilFil();
+                System.out.println("Ordrerne for i dag er blevet gemt - hav en god dag!");
                 runProgram = false;
             }
             case "konto" -> {

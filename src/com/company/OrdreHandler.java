@@ -50,12 +50,13 @@ public class OrdreHandler {
         return false;
 
     }
-    public void sletPizza(String OdreID){
+    public boolean sletPizza(String OdreID){
         for (int i = 0; i < kø.size(); i++){
             if (kø.get(i).getOdreID().equals(OdreID))
                 kø.remove(i);
+            return true;
         }
-
+        return false;
     }
 
     public int getKonto() {
@@ -70,6 +71,5 @@ public class OrdreHandler {
             ps.println(ordre);
         }
 
-        System.out.println("Ordrerne for i dag er blevet gemt - hav en god dag!");
     }
 }
