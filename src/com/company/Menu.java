@@ -3,15 +3,15 @@ package com.company;
 public class Menu {
 
     public String udskrivMenu(){
-    return  "1. Vesuvio:.......tomatsauce, ost, skinke og oregano.....................................................................57 kr.\n" +
-            "2. Amerikaner:....tomatsauce, ost, oksefars og oregano...................................................................53 kr.\n" +
-            "3. Cacciatore:....tomatsauce, ost, pepperoni og oregano..................................................................57 kr.\n" +
-            "4. Cabonara:......tomatsauce, ost, kødsauce, spaghetti, cocktailpølser og oregano........................................63 kr.\n" +
-            "5. Dennis:........tomatsauce, ost, skinke, pepperoni, cocktailpølser og oregano..........................................65 kr.\n" +
-            "6. Bertil:........tomatsauce, ost, bacon og oregano......................................................................57 kr.\n" +
-            "7. Silvia:........tomatsauce, ost, pepperoni, rød peber, løg, oliven og oregano..........................................61 kr.\n" +
-            "8. Victoria:......tomatsauce, ost, skinke, ananas, champignon og oregano.................................................61 kr.\n" +
-            "9. Toronfo:.......tomatsauce, ost, skinke, bacon, kebab, chili og oregano................................................61 kr.\n" +
+    return  "1.  Vesuvio:.......tomatsauce, ost, skinke og oregano.....................................................................57 kr.\n" +
+            "2.  Amerikaner:....tomatsauce, ost, oksefars og oregano...................................................................53 kr.\n" +
+            "3.  Cacciatore:....tomatsauce, ost, pepperoni og oregano..................................................................57 kr.\n" +
+            "4.  Cabonara:......tomatsauce, ost, kødsauce, spaghetti, cocktailpølser og oregano........................................63 kr.\n" +
+            "5.  Dennis:........tomatsauce, ost, skinke, pepperoni, cocktailpølser og oregano..........................................65 kr.\n" +
+            "6.  Bertil:........tomatsauce, ost, bacon og oregano......................................................................57 kr.\n" +
+            "7.  Silvia:........tomatsauce, ost, pepperoni, rød peber, løg, oliven og oregano..........................................61 kr.\n" +
+            "8.  Victoria:......tomatsauce, ost, skinke, ananas, champignon og oregano.................................................61 kr.\n" +
+            "9.  Toronfo:.......tomatsauce, ost, skinke, bacon, kebab, chili og oregano................................................61 kr.\n" +
             "10. Capricciosa:..tomatsauce, ost, skinke, champignon og oregano.........................................................61 kr.\n" +
             "11. Hawai:........tomatsauce, ost, skinke, ananas og oregano.............................................................61 kr.\n" +
             "12. Le Blissola:..tomatsauce, ost, skinke, rejer og oregano..............................................................61 kr.\n" +

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class OrdreDatabase {
 
-    private ArrayList<Ordre> ordreliste = new ArrayList<>();
+    public ArrayList<Ordre> ordreliste = new ArrayList<>();
 
 
 

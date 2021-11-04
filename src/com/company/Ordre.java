@@ -3,7 +3,7 @@ package com.company;
 public class Ordre {
 
     private int PizzaID;
-    private String OdreID;
+    private String OrdreID;
     private String afleveringsTid;
     private String note;
     private int pris;
@@ -12,13 +12,13 @@ public class Ordre {
     public Ordre(int PizzaID, String afleveringsTid, String OdreID, String note){
         this.PizzaID = PizzaID;
         this.afleveringsTid = afleveringsTid;
-        this.OdreID = OdreID;
+        this.OrdreID = OdreID;
         this.note = note;
     }
 
 
-    public String getOdreID() {
-        return OdreID;
+    public String getOrdreID() {
+        return OrdreID;
     }
 
     public int getPizzaID() {
@@ -112,7 +112,7 @@ public class Ordre {
     public String toString() {
         return "Ordre{" +
                 "PizzaID=" + PizzaID +
-                ", OdreID='" + OdreID + '\'' +
+                ", OdreID='" + OrdreID + '\'' +
                 ", afleveringsTid='" + afleveringsTid + '\'' +
                 ", note='" + note + '\'' +
                 ", pris=" + pris +
