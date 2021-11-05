@@ -112,7 +112,7 @@ public class Ordre {
     public String toString() {
         return "Ordre{" +
                 "PizzaID=" + PizzaID +
-                ", OdreID='" + OrdreID + '\'' +
+                ", OrdreID='" + OrdreID + '\'' +
                 ", afleveringsTid='" + afleveringsTid + '\'' +
                 ", note='" + note + '\'' +
                 ", pris=" + pris +
