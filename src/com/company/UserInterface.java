@@ -7,9 +7,9 @@ import java.util.Scanner;
 
 public class UserInterface {
 
-    Scanner input = new Scanner(System.in);
-    String choice;
-    OrdreHandler ordreHandler = new OrdreHandler();
+    private Scanner input = new Scanner(System.in);
+    private String choice;
+    private OrdreHandler ordreHandler = new OrdreHandler();
 
     public void start() throws FileNotFoundException {
 
@@ -34,7 +34,7 @@ public class UserInterface {
                     System.out.println(ordreHandler.menu());
                     break;
                 case "n", "ny":
-                    nyPizza();
+                    nyOrdre();
                     break;
                 case "f", "færdig":
                     færdigOrdre();
@@ -59,7 +59,7 @@ public class UserInterface {
     }
 
 
-    public void nyPizza() {
+    public void nyOrdre() {
         System.out.println("For at stoppe indtastningen af flere pizzaer tast 0");
         ArrayList<Integer> pizzanumre = new ArrayList<>();
         int pizzanummer = 1;

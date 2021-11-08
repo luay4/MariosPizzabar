@@ -14,20 +14,8 @@ public class Pizza {
         this.pris = pris;
     }
 
-    public int getMenuNR() {
-        return menuNR;
-    }
-
     public String getNavn() {
         return navn;
-    }
-
-    public String getFyld() {
-        return fyld;
-    }
-
-    public int getPris() {
-        return pris;
     }
 
     @Override

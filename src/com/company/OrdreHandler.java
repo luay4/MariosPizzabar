@@ -35,8 +35,8 @@ public class OrdreHandler {
         return ordre;
     }
 
-    public boolean sælgOrdre(int OrdreID){
-        for (int i = 0; i < ufærdigeOrdrer.size(); i++){
+    public boolean sælgOrdre(int OrdreID) {
+        for (int i = 0; i < ufærdigeOrdrer.size(); i++) {
             if (ufærdigeOrdrer.get(i).getOrdreID() == OrdreID) {
                 færdigeOrdrer.add(ufærdigeOrdrer.get(i));
                 ufærdigeOrdrer.remove(i);
@@ -47,8 +47,8 @@ public class OrdreHandler {
 
     }
 
-    public boolean sletOrdre(int OrdreID){
-        for (int i = 0; i < ufærdigeOrdrer.size(); i++){
+    public boolean sletOrdre(int OrdreID) {
+        for (int i = 0; i < ufærdigeOrdrer.size(); i++) {
             if (ufærdigeOrdrer.get(i).getOrdreID() == OrdreID)
                 ufærdigeOrdrer.remove(i);
             return true;
@@ -64,10 +64,6 @@ public class OrdreHandler {
             ps.println(ordre);
         }
 
-    }
-
-    public ArrayList<Ordre> getUfærdigeOrdrer() {
-        return ufærdigeOrdrer;
     }
 
     public String menu() {

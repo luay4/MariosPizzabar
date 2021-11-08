@@ -23,18 +23,6 @@ public class Ordre {
     }
 
 
-    public ArrayList<Pizza> getPizzaer() {
-        return pizzaer;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public String getafleveringsTid() {
-        return afleveringsTid;
-    }
-
     @Override
     public String toString() {
         String pizzaerne = "";
