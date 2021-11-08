@@ -1,74 +1,108 @@
 package com.company;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
 public class UserInterface {
-    public void UserInterface() throws FileNotFoundException {
-    String choice;
-    Scanner input = new Scanner(System.in);
-    Menu menu = new Menu();
-    OrdreHandler odreHandler = new OrdreHandler();
 
-    boolean runProgram = true;
+    Scanner input = new Scanner(System.in);
+    String choice;
+    OrdreHandler ordreHandler = new OrdreHandler();
+
+    public void start() throws FileNotFoundException {
+
+
+        boolean runProgram = true;
         System.out.println("Velkommen til Marios Pizza App Version 1.0");
+        System.out.println("""
+                Tast følgende for forskellige funktioner:
+                'menu', 'm' for at se menuen over pizzaerne
+                'ny', 'n' for at lave en ny bestilling på en pizza
+                'f', 'færdig' for at færdigøre bestillingen
+                's', 'slet' for at slette bestillingen'k', 'kø' for at se de ufærdige bestillinger
+                'k', 'kø' for at se alle ufærdige bestillinger
+                'x', 'afslut' for at afslutte programmet""");
 
         while (runProgram) {
-        choice = input.nextLine().toLowerCase();
-        switch (choice) {
-            case "menu","m" -> {
-                System.out.println(menu.udskrivMenu());
+            System.out.print("Indtast en kommando: ");
+            choice = input.next().toLowerCase();
+            System.out.println();
+            switch (choice) {
+                case "menu", "m":
+                    System.out.println(ordreHandler.menu());
+                    break;
+                case "n", "ny":
+                    nyPizza();
+                    break;
+                case "f", "færdig":
+                    færdigOrdre();
+                    break;
+                case "s", "slet":
+                    sletOrdre();
+                    break;
+                case "k", "kø":
+                    System.out.println("Ufærdige ordrer:");
+                    ordreHandler.visKø();
+                    break;
+                case "x", "afslut":
+                    ordreHandler.gemTilFil();
+                    System.out.println("Ordrerne for i dag er blevet gemt - hav en god dag!");
+                    runProgram = false;
+                    break;
+                default:
+                    System.out.println("Kunne ikke forstå denne kommando");
+                    break;
             }
-            case "n","ny" -> {
-                System.out.println("Indtast PizzaID");
-                int PizzaID = input.nextInt();
-                System.out.println("Indtast afleveringstidspunkt");
-                String afleveringTid = input.next();
-                System.out.println("Indtast note");
-                String note = input.next();
-                odreHandler.tilføjOrdre(PizzaID, afleveringTid, note);
-
-            }
-            case "f","færdig" -> {
-                odreHandler.visKø();
-                System.out.println("Indtast OdreID for at færdiggøre odre");
-                String odreID = input.nextLine();
-                boolean ordre = odreHandler.sælgPizza(odreID);
-                if (ordre) {
-                    System.out.println(odreID + " blev solgt og slettet i køen");
-                } else {
-                    System.out.println("Prøv igen");
-                }
-            }
-            case "s","slet" -> {
-                odreHandler.visKø();
-                System.out.println("Indtast OdreID for at slette odre");
-                String odreID = input.nextLine();
-                boolean ordre = odreHandler.sletPizza(odreID);
-                if (ordre) {
-                    System.out.println(odreID + " blev slettet i køen");
-                } else {
-                    System.out.println("Prøv igen");
-                }
-            }
-            case "k","kø","bestillinger","ordre" -> {
-                odreHandler.visKø();
-            }
-            case "x","afslut program" -> {
-                odreHandler.gemTilFil();
-                System.out.println("Ordrerne for i dag er blevet gemt - hav en god dag!");
-                runProgram = false;
-            }
-            case "konto" -> {
-                odreHandler.getKonto();
-            }
-            default -> {
-                System.out.println("Lades til der skete en fejl, prøv igen.");
-            }
-
         }
     }
 
-}}
+
+    public void nyPizza() {
+        System.out.println("For at stoppe indtastningen af flere pizzaer tast 0");
+        ArrayList<Integer> pizzanumre = new ArrayList<>();
+        int pizzanummer = 1;
+        while (pizzanummer >= 1 && pizzanummer <= 30) {
+            System.out.print("Indtast pizzaens menunummer: ");
+            pizzanummer = input.nextInt();
+            if (pizzanummer >= 1 && pizzanummer <= 30) {
+                pizzanumre.add(pizzanummer);
+            } else {
+                break;
+            }
+        }
+        System.out.print("Indtast afleveringstidspunkt: ");
+        String afleveringTid = input.next();
+        System.out.print("Indtast note: ");
+        String note = input.next();
+        Ordre finalOrder = ordreHandler.tilføjOrdre(pizzanumre, afleveringTid, note);
+        System.out.println("Ordre " + finalOrder.getOrdreID() + " er føjet til listen af ordre");
+        System.out.println();
+    }
+
+    public void færdigOrdre() {
+        ordreHandler.visKø();
+        System.out.print("Indtast ordreID for at færdiggøre ordre: ");
+        int ordreIDF = input.nextInt();
+        boolean ordreF = ordreHandler.sælgOrdre(ordreIDF);
+        if (ordreF) {
+            System.out.println(ordreIDF + " blev solgt og slettet i køen");
+        } else {
+            System.out.println("Prøv igen");
+        }
+    }
+
+    public void sletOrdre() {
+        ordreHandler.visKø();
+        System.out.print("Indtast ordreID for at slette ordre: ");
+        int ordreIDS = input.nextInt();
+        boolean ordreS = ordreHandler.sletOrdre(ordreIDS);
+        if (ordreS) {
+            System.out.println(ordreIDS + " blev slettet i køen");
+        } else {
+            System.out.println("Prøv igen");
+        }
+    }
+}
 

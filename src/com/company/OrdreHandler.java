@@ -9,67 +9,68 @@ import java.util.Random;
 
 
 public class OrdreHandler {
-    private ArrayList<Ordre> kø = new ArrayList<>();
-    private ArrayList<Ordre> ordreliste = new ArrayList<>();
-    private int konto = 0;
+    private ArrayList<Ordre> ufærdigeOrdrer = new ArrayList<>();
+    private ArrayList<Ordre> færdigeOrdrer = new ArrayList<>();
     private Random random = new Random();
-    private OrdreDatabase odb;
-
-
+    private Menu menu = new Menu();
 
     public void visKø() {
-        for (int i = 0; i < kø.size(); i++) {
-            System.out.println("OdreID: " + kø.get(i).getOdreID() + "\nPizzaID: " + kø.get(i).getPizzaID() + "\nAfleveringstid: " + kø.get(i).getafleveringsTid() + "\nNote: " + kø.get(i).getNote() + "\n");
+        for (Ordre ordre : ufærdigeOrdrer) {
+            System.out.println(ordre);
         }
     }
 
+    public Ordre tilføjOrdre(ArrayList<Integer> pizzaNumre, String afleveringstid, String note) {
+        ArrayList<Pizza> pizzaListe = new ArrayList<>();
 
-    public void tilføjOrdre(int PizzaID, String afleveringTid, String note){
-        String OdreID = "pizza "+PizzaID+" "+random.nextInt(10)+random.nextInt(10)+random.nextInt(10);
-        Ordre odre = new Ordre(PizzaID, afleveringTid, OdreID, note);
-        odre.setPris(PizzaID);
-        odre.setNavn(PizzaID);
-        kø.add(odre);
-        ordreliste.add(odre);
-        System.out.println(OdreID+" er nu tilføjet\n" +
-                            "PizzaID: "+PizzaID+"\n" +
-                            "Pizza navn: "+odre.getNavn()+"\n" +
-                            "Note: "+note+"\nAfleveringstid: "+afleveringTid);
+        for (Integer pizzaNummer : pizzaNumre) {
+            pizzaListe.add(menu.pizzaMenu.get(pizzaNummer - 1));
+        }
+
+        int ordreID = random.nextInt(1000) + 1;
+
+        Ordre ordre = new Ordre(pizzaListe, ordreID, afleveringstid, note);
+
+        ufærdigeOrdrer.add(ordre);
+        return ordre;
     }
 
+    public boolean sælgOrdre(int OrdreID){
+        for (int i = 0; i < ufærdigeOrdrer.size(); i++){
+            if (ufærdigeOrdrer.get(i).getOrdreID() == OrdreID) {
+                færdigeOrdrer.add(ufærdigeOrdrer.get(i));
+                ufærdigeOrdrer.remove(i);
+                return true;
+            }
+        }
+        return false;
 
+    }
 
-    public boolean sælgPizza(String OdreID){
-        for (int i = 0; i < kø.size(); i++){
-            if (kø.get(i).getOdreID().equals(OdreID))
-                konto = konto + kø.get(i).getPris();
-            ordreliste.add(kø.get(i));
-            kø.remove(i);
+    public boolean sletOrdre(int OrdreID){
+        for (int i = 0; i < ufærdigeOrdrer.size(); i++){
+            if (ufærdigeOrdrer.get(i).getOrdreID() == OrdreID)
+                ufærdigeOrdrer.remove(i);
             return true;
         }
         return false;
-
-    }
-    public boolean sletPizza(String OdreID){
-        for (int i = 0; i < kø.size(); i++){
-            if (kø.get(i).getOdreID().equals(OdreID))
-                kø.remove(i);
-            return true;
-        }
-        return false;
-    }
-
-    public int getKonto() {
-        return konto;
     }
 
     public void gemTilFil() throws FileNotFoundException {
         File file = new File("ordrehistorik.txt");
         PrintStream ps = new PrintStream(new FileOutputStream(file, true));
 
-        for (Ordre ordre : ordreliste) {
+        for (Ordre ordre : færdigeOrdrer) {
             ps.println(ordre);
         }
 
+    }
+
+    public ArrayList<Ordre> getUfærdigeOrdrer() {
+        return ufærdigeOrdrer;
+    }
+
+    public String menu() {
+        return menu.udskrivMenu();
     }
 }
